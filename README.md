@@ -12,5 +12,5 @@
 
 ### Exportables
 
-![Products](./images/products_xlsx.png)
-![Products](./images/products_xlsx.png)
+![Products as XLSX](./images/products_xlsx.png)
+![Orders as XLSX](./images/orders_xlsx.png)
