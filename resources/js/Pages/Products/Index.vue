@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
-defineProps(['products']);
+defineProps(['products', 'error']);
 </script>
 
 <template>
@@ -11,6 +11,15 @@ defineProps(['products']);
                 Products
             </h2>
         </template>
+
+        <div v-if="error" class="mb-4 rounded bg-red-100 p-4 text-red-700">
+            {{ error }}
+        </div>
+
+        <div v-if="products.length === 0 && !error">
+            <p>There are no product available.</p>
+        </div>
+
         <div class="p-4">
             <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                 <div

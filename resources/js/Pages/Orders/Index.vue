@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
-defineProps(['orders']);
+defineProps(['orders', 'error']);
 </script>
 
 <template>
@@ -11,6 +11,15 @@ defineProps(['orders']);
                 Orders
             </h2>
         </template>
+
+        <div v-if="error" class="mb-4 rounded bg-red-100 p-4 text-red-700">
+            {{ error }}
+        </div>
+
+        <div v-if="orders.length === 0 && !error">
+            <p>There are no order available.</p>
+        </div>
+
         <div class="p-4">
             <div
                 v-for="order in orders"
