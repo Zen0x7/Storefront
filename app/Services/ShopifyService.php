@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class ShopifyService
@@ -33,6 +34,10 @@ class ShopifyService
     {
         $products = [];
         $cursor = null;
+
+        if (Cache::has('products')) {
+            return Cache::get('products');
+        }
 
         do {
             $after = $cursor ? ", after: \"{$cursor}\"" : '';
@@ -74,6 +79,8 @@ GQL;
             $hasNextPage = data_get($result, 'data.products.pageInfo.hasNextPage');
         } while ($hasNextPage);
 
+        Cache::put('products', $products, now()->addSeconds(60));
+
         return $products;
     }
 
@@ -84,6 +91,10 @@ GQL;
     {
         $orders = [];
         $cursor = null;
+
+        if (Cache::has('orders')) {
+            return Cache::get('orders');
+        }
 
         $since = now()->subDays(30)->toDateString();
 
@@ -132,6 +143,8 @@ GQL;
             $cursor = data_get($result, 'data.orders.pageInfo.endCursor');
             $hasNextPage = data_get($result, 'data.orders.pageInfo.hasNextPage');
         } while ($hasNextPage);
+
+        Cache::put('orders', $orders, now()->addSeconds(60));
 
         return $orders;
     }
