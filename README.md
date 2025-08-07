@@ -1,5 +1,7 @@
 # Storefront
 
+[![codecov](https://codecov.io/gh/Zen0x7/Storefront/graph/badge.svg?token=VJ0UGD9G89)](https://codecov.io/gh/Zen0x7/Storefront)
+
 ## Requirements
 
 - PHP >= 8.4
@@ -71,8 +73,8 @@ Follow these steps to run the project manually:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-user/your-repo.git
-cd your-repo
+git clone https://github.com/Zen0x7/Storefront.git
+cd Storefront
 ```
 
 ### 2. Install dependencies

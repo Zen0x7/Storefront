@@ -82,4 +82,9 @@ jobs:
           SHOPIFY_TOKEN: ${{ secrets.SHOPIFY_TOKEN }}
         run: |
           ./vendor/bin/pint --test
-          php artisan test --coverage
+          php artisan test --coverage --coverage-clover storage/coverage/coverage.xml
+
+      - uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./storage/coverage/coverage.xml
