@@ -79,7 +79,7 @@ GQL;
             $hasNextPage = data_get($result, 'data.products.pageInfo.hasNextPage');
         } while ($hasNextPage);
 
-        Cache::put('products', $products, now()->addSeconds(60));
+        Cache::put('products', $products, now()->addMinute());
 
         return $products;
     }
@@ -144,7 +144,7 @@ GQL;
             $hasNextPage = data_get($result, 'data.orders.pageInfo.hasNextPage');
         } while ($hasNextPage);
 
-        Cache::put('orders', $orders, now()->addSeconds(60));
+        Cache::put('orders', $orders, now()->addMinute());
 
         return $orders;
     }
