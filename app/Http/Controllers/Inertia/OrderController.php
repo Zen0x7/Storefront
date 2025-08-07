@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Inertia;
 use App\Http\Controllers\Controller;
 use App\Services\ShopifyService;
 use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 class OrderController extends Controller
 {
-    /**
-     * @throws ConnectionException
-     */
     public function index(): Response
     {
         $shopify = new ShopifyService(
@@ -20,7 +19,29 @@ class OrderController extends Controller
             config('services.shopify.token')
         );
 
-        $orders = $shopify->getAllOrders();
+        try {
+            $orders = $shopify->getAllOrders();
+        } catch (ConnectionException $e) {
+            Log::error('Shopify ConnectionException: '.$e->getMessage(), [
+                'url' => config('services.shopify.url'),
+                'token' => config('services.shopify.token'),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return Inertia::render('Orders/Index', [
+                'orders' => [],
+                'error' => 'No se pudo conectar a Shopify. Revisa la URL o el token.',
+            ]);
+        } catch (Throwable $e) {
+            Log::error('Error inesperado en OrderController@index: '.$e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return Inertia::render('Orders/Index', [
+                'orders' => [],
+                'error' => 'Ocurrió un error inesperado.',
+            ]);
+        }
 
         $data = collect($orders)->map(function ($edge) {
             $node = $edge['node'];
