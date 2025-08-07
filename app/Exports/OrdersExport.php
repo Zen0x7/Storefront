@@ -17,7 +17,7 @@ class OrdersExport implements FromCollection
                 'ID' => $node['id'],
                 'Name' => $node['name'],
                 'Date' => $node['createdAt'],
-                'Client' => trim(($node['customer']['firstName'] ?? '') . ' ' . ($node['customer']['lastName'] ?? '')),
+                'Client' => trim(($node['customer']['firstName'] ?? '').' '.($node['customer']['lastName'] ?? '')),
                 'Email' => $node['customer']['email'] ?? '',
                 'Total' => $node['totalPrice'],
             ];

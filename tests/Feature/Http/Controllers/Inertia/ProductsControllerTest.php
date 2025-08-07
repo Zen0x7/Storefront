@@ -16,20 +16,20 @@ it('renders the products page with products data', function () {
                                 'title' => 'Zapato de prueba',
                                 'variants' => [
                                     'edges' => [
-                                        ['node' => ['sku' => 'Z123', 'price' => '49.99']]
-                                    ]
+                                        ['node' => ['sku' => 'Z123', 'price' => '49.99']],
+                                    ],
                                 ],
                                 'images' => [
                                     'edges' => [
-                                        ['node' => ['src' => 'https://example.com/image.jpg']]
-                                    ]
-                                ]
-                            ]
-                        ]
+                                        ['node' => ['src' => 'https://example.com/image.jpg']],
+                                    ],
+                                ],
+                            ],
+                        ],
                     ],
                     'pageInfo' => ['hasNextPage' => false, 'endCursor' => null],
-                ]
-            ]
+                ],
+            ],
         ], 200),
     ]);
 

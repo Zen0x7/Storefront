@@ -9,11 +9,11 @@ it('retrieves products from Shopify', function () {
             'data' => [
                 'products' => [
                     'edges' => [
-                        ['node' => ['id' => '1', 'title' => 'Product 1']]
+                        ['node' => ['id' => '1', 'title' => 'Product 1']],
                     ],
                     'pageInfo' => ['hasNextPage' => false, 'endCursor' => null],
-                ]
-            ]
+                ],
+            ],
         ], 200),
     ]);
 

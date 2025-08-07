@@ -3,7 +3,6 @@
 namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Illuminate\Support\Collection;
 
 class ProductsExport implements FromCollection
 {
@@ -13,6 +12,7 @@ class ProductsExport implements FromCollection
     {
         return collect($this->products)->map(function ($edge) {
             $node = $edge['node'];
+
             return [
                 'ID' => $node['id'],
                 'Title' => $node['title'],

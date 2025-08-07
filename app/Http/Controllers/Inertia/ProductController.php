@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Inertia;
 
 use App\Http\Controllers\Controller;
@@ -21,6 +20,7 @@ class ProductController extends Controller
 
         $data = collect($products)->map(function ($edge) {
             $node = $edge['node'];
+
             return [
                 'id' => $node['id'],
                 'title' => $node['title'],
@@ -35,4 +35,3 @@ class ProductController extends Controller
         ]);
     }
 }
-

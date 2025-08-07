@@ -31,7 +31,7 @@ class OrderController extends Controller
                 'createdAt' => $node['createdAt'],
                 'totalPrice' => $node['totalPrice'],
                 'customer' => [
-                    'name' => trim(($node['customer']['firstName'] ?? '') . ' ' . ($node['customer']['lastName'] ?? '')),
+                    'name' => trim(($node['customer']['firstName'] ?? '').' '.($node['customer']['lastName'] ?? '')),
                     'email' => $node['customer']['email'] ?? '',
                 ],
                 'lineItems' => collect($node['lineItems']['edges'] ?? [])->map(function ($item) {

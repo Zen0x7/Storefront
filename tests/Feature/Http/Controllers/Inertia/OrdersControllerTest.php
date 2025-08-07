@@ -28,18 +28,18 @@ it('renders the orders page with orders data', function () {
                                                 'title' => 'Test Product',
                                                 'quantity' => 1,
                                                 'originalUnitPriceSet' => [
-                                                    'presentmentMoney' => ['amount' => '100.00']
-                                                ]
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
+                                                    'presentmentMoney' => ['amount' => '100.00'],
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
                     ],
                     'pageInfo' => ['hasNextPage' => false, 'endCursor' => null],
-                ]
-            ]
+                ],
+            ],
         ], 200),
     ]);
 

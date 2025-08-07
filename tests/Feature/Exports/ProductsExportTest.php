@@ -2,8 +2,8 @@
 
 use App\Exports\ProductsExport;
 use App\Models\User;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 
 it('exports products as Excel', function () {
     Http::fake([
@@ -17,20 +17,20 @@ it('exports products as Excel', function () {
                                 'title' => 'Zapato de prueba',
                                 'variants' => [
                                     'edges' => [
-                                        ['node' => ['sku' => 'Z123', 'price' => '49.99']]
-                                    ]
+                                        ['node' => ['sku' => 'Z123', 'price' => '49.99']],
+                                    ],
                                 ],
                                 'images' => [
                                     'edges' => [
-                                        ['node' => ['src' => 'https://example.com/image.jpg']]
-                                    ]
-                                ]
-                            ]
-                        ]
+                                        ['node' => ['src' => 'https://example.com/image.jpg']],
+                                    ],
+                                ],
+                            ],
+                        ],
                     ],
                     'pageInfo' => ['hasNextPage' => false, 'endCursor' => null],
-                ]
-            ]
+                ],
+            ],
         ], 200),
     ]);
 
@@ -42,6 +42,7 @@ it('exports products as Excel', function () {
 
     Excel::assertDownloaded('products.xlsx', function (ProductsExport $export) {
         $collection = $export->collection();
+
         return $collection->first()['Title'] === 'Zapato de prueba';
     });
 });

@@ -2,8 +2,8 @@
 
 use App\Exports\OrdersExport;
 use App\Models\User;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 
 it('exports orders as Excel', function () {
     Http::fake([
@@ -29,18 +29,18 @@ it('exports orders as Excel', function () {
                                                 'title' => 'Test Product',
                                                 'quantity' => 1,
                                                 'originalUnitPriceSet' => [
-                                                    'presentmentMoney' => ['amount' => '100.00']
-                                                ]
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
+                                                    'presentmentMoney' => ['amount' => '100.00'],
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
                     ],
                     'pageInfo' => ['hasNextPage' => false, 'endCursor' => null],
-                ]
-            ]
+                ],
+            ],
         ], 200),
     ]);
 
@@ -52,6 +52,7 @@ it('exports orders as Excel', function () {
 
     Excel::assertDownloaded('orders.xlsx', function (OrdersExport $export) {
         $collection = $export->collection();
+
         return $collection->first()['Name'] === '#123';
     });
 });

@@ -38,6 +38,6 @@ return [
     'shopify' => [
         'url' => env('SHOPIFY_URL'),
         'token' => env('SHOPIFY_TOKEN'),
-    ]
+    ],
 
 ];

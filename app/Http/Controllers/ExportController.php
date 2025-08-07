@@ -33,4 +33,3 @@ class ExportController extends Controller
         return Excel::download(new OrdersExport($orders), 'orders.xlsx');
     }
 }
-
